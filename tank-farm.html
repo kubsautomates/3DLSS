@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Studies — 3DLSS</title>
-<meta name="description" content="Selected projects with timelines and outcomes.">
+<title>Tank Farm — Case Study — 3DLSS</title>
+<meta name="description" content="Real‑world scanning and modeling timeline.">
 <link rel="icon" href="../assets/logo.png" type="image/png">
 <link rel="canonical" href="https://www.3dlss.com/">
-<meta property="og:title" content="Case Studies — 3DLSS"><meta property="og:description" content="Selected projects with timelines and outcomes.">
+<meta property="og:title" content="Tank Farm — Case Study — 3DLSS"><meta property="og:description" content="Real‑world scanning and modeling timeline.">
 <meta property="og:image" content="../assets/og.jpg"><meta property="og:type" content="website">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -35,6 +35,13 @@ tailwind.config = {
   .muted { color: #64748b; }
   .section { padding: 4rem 0; }
   .container { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+
+  .logo-wrap { position: relative; display: inline-flex; align-items: center; gap: .75rem; }
+  .logo-wrap img { transform-origin: left center; animation: logo-reveal .9s ease both; }
+  .logo-underline::after { content:""; position:absolute; left:0; bottom:-4px; height:3px; width:0; background:linear-gradient(90deg,#ff7a1a,#ffb36e); border-radius:9999px; animation: underline-grow 1.2s .5s ease forwards; }
+  @keyframes underline-grow { from { width:0; } to { width:72px; } }
+  @keyframes logo-reveal { from { opacity:0; transform: translateY(6px) scale(.98);} to { opacity:1; transform: translateY(0) scale(1);} }
+  .logo-wrap:hover img { transform: scale(1.03); transition: transform .2s ease; }
 </style>
 <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>
@@ -53,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <body class="bg-white text-ink">
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
   <div class="container py-3 flex items-center justify-between">
-    <a href="../index.html" class="flex items-center gap-3"><img src="../assets/logo.png" class="h-10 w-auto" alt="3DLSS — 3D Laser Scanning Solutions"><span class="font-semibold">3DLSS</span></a>
+    <a href="../index.html" class="logo-wrap logo-underline"><img src="../assets/logo.png" class="h-10 w-auto" alt="3DLSS — 3D Laser Scanning Solutions"></a>
     <nav class="hidden md:flex items-center gap-6">
       <a href="../services/index.html" class="hover:text-brand">Services</a>
       <a href="../industries/index.html" class="hover:text-brand">Industries</a>
@@ -66,19 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </header>
 
-
-<main class="container section">
-  <h1 class="text-3xl md:text-4xl font-bold mb-6">Case Studies</h1>
-  <p class="muted mb-8 max-w-3xl">A few representative projects showing typical scan/registration times and modeling timelines. Replace images and add PDF downloads as available.</p>
-  <div class="grid md:grid-cols-3 gap-6">
-    <a class="card p-6 hover:shadow-soft" href="tank-farm.html"><div class="font-semibold mb-1">Tank Farm (120m×90m)</div><p class="muted text-sm">1d scan • 1d registration • 2w modeling. Deformation and volume-ready models.</p></a>
-    <a class="card p-6 hover:shadow-soft" href="pipeline-valve-stations.html"><div class="font-semibold mb-1">Pipeline Valve Stations (150m×160m)</div><p class="muted text-sm">2d scan • 1d registration • 4w modeling. Tie‑ins and spool design.</p></a>
-    <a class="card p-6 hover:shadow-soft" href="compressor-station-addition.html"><div class="font-semibold mb-1">Compressor Station Addition (230m×210m)</div><p class="muted text-sm">2d scan • 2d registration • 5w modeling. Brownfield expansion checks.</p></a>
-    <a class="card p-6 hover:shadow-soft" href="vessel-quality-control.html"><div class="font-semibold mb-1">Vessel Quality Control</div><p class="muted text-sm">1h scan • 2d office. QA snapshot with detail drawings.</p></a>
-    <a class="card p-6 hover:shadow-soft" href="sait-utility-building.html"><div class="font-semibold mb-1">SAIT Polytechnic Utility Building</div><p class="muted text-sm">5h scan • 6h registration • 3w modeling. Campus utility mapping.</p></a>
+<main class="container section max-w-3xl">
+  <h1 class="text-3xl md:text-4xl font-bold mb-4">Tank Farm</h1>
+  <div class="grid grid-cols-3 gap-3 mb-6">
+    <img src="../assets/images/gallery-1.jpg" class="rounded-xl" alt="">
+    <img src="../assets/images/gallery-2.jpg" class="rounded-xl" alt="">
+    <img src="../assets/images/gallery-3.jpg" class="rounded-xl" alt="">
+  </div>
+  <h2 class="font-semibold text-xl mb-2">Timeline</h2>
+  <ul class="list-disc pl-6 space-y-2 muted">
+    <li>1 day on site (laser scanning)</li><li>1 day in office (point cloud registration)</li><li>2 weeks in office (3D model development)</li>
+  </ul>
+  <div class="mt-10 p-6 card">
+    <p class="text-sm muted">Replace the gallery above with real project stills or viewer embeds.</p>
   </div>
 </main>
-
 
 <footer class="mt-20 border-t border-slate-200">
   <div class="container py-10 grid md:grid-cols-4 gap-8">
