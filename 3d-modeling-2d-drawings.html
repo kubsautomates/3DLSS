@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Services — 3DLSS</title>
-<meta name="description" content="All services from 3D capture to deliverables.">
+<title>3D Modeling & 2D Drawings — 3DLSS</title>
+<meta name="description" content="From point clouds, generate accurate 3D models and extract the 2D drawings needed for fabrication and construction.">
 <link rel="icon" href="../assets/logo.png" type="image/png">
 <link rel="canonical" href="https://www.3dlss.com/">
-<meta property="og:title" content="Services — 3DLSS"><meta property="og:description" content="All services from 3D capture to deliverables.">
+<meta property="og:title" content="3D Modeling & 2D Drawings — 3DLSS"><meta property="og:description" content="From point clouds, generate accurate 3D models and extract the 2D drawings needed for fabrication and construction.">
 <meta property="og:image" content="../assets/og.jpg"><meta property="og:type" content="website">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -35,6 +35,13 @@ tailwind.config = {
   .muted { color: #64748b; }
   .section { padding: 4rem 0; }
   .container { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+
+  .logo-wrap { position: relative; display: inline-flex; align-items: center; gap: .75rem; }
+  .logo-wrap img { transform-origin: left center; animation: logo-reveal .9s ease both; }
+  .logo-underline::after { content:""; position:absolute; left:0; bottom:-4px; height:3px; width:0; background:linear-gradient(90deg,#ff7a1a,#ffb36e); border-radius:9999px; animation: underline-grow 1.2s .5s ease forwards; }
+  @keyframes underline-grow { from { width:0; } to { width:72px; } }
+  @keyframes logo-reveal { from { opacity:0; transform: translateY(6px) scale(.98);} to { opacity:1; transform: translateY(0) scale(1);} }
+  .logo-wrap:hover img { transform: scale(1.03); transition: transform .2s ease; }
 </style>
 <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>
@@ -53,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <body class="bg-white text-ink">
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
   <div class="container py-3 flex items-center justify-between">
-    <a href="../index.html" class="flex items-center gap-3"><img src="../assets/logo.png" class="h-10 w-auto" alt="3DLSS — 3D Laser Scanning Solutions"><span class="font-semibold">3DLSS</span></a>
+    <a href="../index.html" class="logo-wrap logo-underline"><img src="../assets/logo.png" class="h-10 w-auto" alt="3DLSS — 3D Laser Scanning Solutions"></a>
     <nav class="hidden md:flex items-center gap-6">
       <a href="../services/index.html" class="hover:text-brand">Services</a>
       <a href="../industries/index.html" class="hover:text-brand">Industries</a>
@@ -66,32 +73,36 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </header>
 
-<main class="container section">
-  <h1 class="text-3xl md:text-4xl font-bold mb-6">Services</h1>
-  <p class="muted mb-8">From reality capture to deliverables that accelerate design, fabrication, and commissioning.</p>
+<main class="container section max-w-3xl">
+  <h1 class="text-3xl md:text-4xl font-bold mb-4">3D Modeling & 2D Drawings</h1>
+  <p class="muted mb-6">From point clouds, generate accurate 3D models and extract the 2D drawings needed for fabrication and construction.</p>
   <div class="grid md:grid-cols-2 gap-6">
-    <a class="card p-6 hover:shadow-soft" href="as-built.html">As‑Built / As‑Is Modeling</a>
-    <a class="card p-6 hover:shadow-soft" href="tie-in-point-design.html">Tie‑In Point Design</a>
-    <a class="card p-6 hover:shadow-soft" href="conceptual-design.html">Conceptual Design</a>
-    <a class="card p-6 hover:shadow-soft" href="3d-modeling-2d-drawings.html">3D Modeling & 2D Drawings</a>
-    <a class="card p-6 hover:shadow-soft" href="pid-redline.html">P&amp;ID Red‑Line &amp; As‑Built</a>
-    <a class="card p-6 hover:shadow-soft" href="tank-deformation.html">Tank Deformation Analysis</a>
-    <a class="card p-6 hover:shadow-soft" href="ground-model.html">Ground Model</a>
-    <a class="card p-6 hover:shadow-soft" href="volumetric-calculation.html">Volumetric Calculations</a>
+    <div class="card p-6">
+      <h2 class="font-semibold mb-2">What this includes</h2>
+      <ul class="list-disc pl-6 space-y-2 muted"><li>3D modeling aligned to survey control</li><li>Drawing extractions: GA, ISO, structural</li><li>Equipment and mechanical details for QA/modification</li></ul>
+    </div>
+    <div class="card p-6">
+      <h2 class="font-semibold mb-2">Typical deliverables</h2>
+      <ul class="list-disc pl-6 space-y-2 muted"><li>GA/ISO drawings</li><li>Structural details</li><li>Equipment detail drawings</li></ul>
+    </div>
   </div>
-
-  <section class="mt-14">
-    <h2 class="text-2xl font-bold mb-4">Why Choose Our Services</h2>
-    <p class="muted mb-6">With over a decade of field-proven experience, 3DLSS offers unmatched expertise in capturing, processing, and delivering high‑fidelity As‑Built data. Our workflows are tuned for speed and accuracy, ensuring minimal downtime for your operations.</p>
-    <ul class="list-disc pl-6 muted space-y-2">
-      <li>State‑of‑the‑art equipment operated by skilled technicians</li>
-      <li>Strict adherence to safety protocols and site regulations</li>
-      <li>Flexible deliverables: point clouds, 3D models, 2D drawings, and more</li>
-      <li>Proven track record in Oil & Gas, Utilities, Manufacturing, and Institutional sectors</li>
-      <li>Collaborative approach: working closely with your team for the best outcomes</li>
-    </ul>
-  </section>
-
+  <div class="mt-8">
+    <h2 class="font-semibold text-xl mb-2">Gallery</h2>
+    <div class="grid grid-cols-3 gap-3">
+      <img src="../assets/images/gallery-4.jpg" class="rounded-xl" alt="">
+      <img src="../assets/images/gallery-5.jpg" class="rounded-xl" alt="">
+      <img src="../assets/images/gallery-6.jpg" class="rounded-xl" alt="">
+    </div>
+  </div>
+  <div class="mt-10">
+    <h2 class="font-semibold text-xl mb-4">FAQs</h2>
+    <button data-accordion class="w-full text-left py-3 border-b">Do you follow our drafting standards?</button><div class="hidden muted pb-4">We adopt client standards provided at project start.</div><button data-accordion class="w-full text-left py-3 border-b">What review cycles are typical?</button><div class="hidden muted pb-4">30/60/90% with consolidated markups.</div>
+  </div>
+  <div class="mt-10 p-6 card">
+    <h3 class="font-semibold mb-2">Get a fast quote</h3>
+    <p class="text-sm muted mb-2">Send scope and formats (E57/RCP/RCS/LAS). We’ll confirm timeline and pricing.</p>
+    <a href="../contact.html#quote" class="inline-block bg-brand text-white px-5 py-3 rounded-xl">Request a Quote</a>
+  </div>
 </main>
 
 <footer class="mt-20 border-t border-slate-200">
