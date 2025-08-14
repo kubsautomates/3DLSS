@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://player.vimeo.com">
+  <link rel="preconnect" href="https://i.vimeocdn.com">
+  <link rel="preconnect" href="https://f.vimeocdn.com">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3DLSS — 3D Laser Scanning</title>
+<meta name="description" content="High‑accuracy 3D laser scanning, modeling, and engineering deliverables.">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="canonical" href="https://www.3dlss.com/">
+<meta property="og:title" content="3DLSS — 3D Laser Scanning"><meta property="og:description" content="High‑accuracy 3D laser scanning, modeling, and engineering deliverables.">
+<meta property="og:image" content="assets/og.jpg"><meta property="og:type" content="website">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {"DEFAULT":"#ff7a1a","muted":"#ffb36e"},
+        ink: "#0b1220",
+        mist: "#f6f7f9"
+      },
+      borderRadius: {"xl":"1rem","2xl":"1.25rem"},
+      boxShadow: {
+        soft: "0 8px 30px rgba(11,18,32,0.06)"
+      },
+      fontFamily: {
+        sans: ["Inter","ui-sans-serif","system-ui"]
+      }
+    }
+  }
+};
+</script>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style>
+  .card { background: white; border: 1px solid #e5e7eb; border-radius: 1rem; }
+  .muted { color: #64748b; }
+  .section { padding: 4rem 0; }
+  .container { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+
+  /* Animated logo underline + gentle reveal */
+  .logo-wrap { position: relative; display: inline-flex; align-items: center; gap: .75rem; }
+  .logo-wrap img { transform-origin: left center; animation: logo-reveal .9s ease both; }
+  .logo-underline::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -4px;
+    height: 3px; width: 0;
+    background: linear-gradient(90deg, #ff7a1a, #ffb36e);
+    border-radius: 9999px;
+    animation: underline-grow 1.2s .5s ease forwards;
+  }
+  @keyframes underline-grow { from { width: 0; } to { width: 72px; } }
+  @keyframes logo-reveal { from { opacity: 0; transform: translateY(6px) scale(.98);} to { opacity:1; transform: translateY(0) scale(1);} }
+  .logo-wrap:hover img { transform: scale(1.03); transition: transform .2s ease; }
+
+  /* Hero video container */
+  .hero-video { position: relative; border-radius: 1rem; overflow: hidden; }
+  .hero-video video { width: 100%; height: 440px; object-fit: cover; display: block; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.08)); pointer-events: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video video { display: none; }
+    .hero-video .poster { display: block; }
+  }
+</style>
+<script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Lazy-load Vimeo hero if motion allowed and section is visible
+    const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const frameWrap = document.querySelector('.hero-video .video-frame');
+    const posterImg = document.querySelector('.hero-video .poster');
+    if (!prefersReduce && frameWrap) {
+      const loadIframe = () => {
+        const iframe = frameWrap.querySelector('iframe');
+        if (iframe && (!iframe.src || iframe.src === 'about:blank')) {
+          iframe.src = iframe.dataset.src;
+          frameWrap.style.display = 'block';
+          if (posterImg) posterImg.style.display = 'none';
+        }
+      };
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { loadIframe(); io.disconnect(); } });
+        }, { rootMargin: '0px 0px -10% 0px' });
+        io.observe(document.querySelector('.hero-video'));
+      } else {
+        loadIframe();
+      }
+    }
+
+  const v=document.querySelector('.hero-video video');
+  if(v){ v.addEventListener('error',()=>{ v.style.display='none'; const p=v.parentElement.querySelector('.poster'); if(p) p.style.display='block'; }); }
+
+  if(window.lucide) window.lucide.createIcons();
+  document.querySelectorAll('[data-accordion]').forEach(acc => {
+    acc.addEventListener('click', () => {
+      const c = acc.nextElementSibling;
+      c.classList.toggle('hidden');
+    });
+  });
+});
+</script>
+</head>
+
+<body class="bg-white text-ink">
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+  <div class="container py-3 flex items-center justify-between">
+    <a href="index.html" class="logo-wrap logo-underline"><img src="assets/logo.png" class="h-10 w-auto" alt="3DLSS — 3D Laser Scanning Solutions"></a>
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="services/index.html" class="hover:text-brand">Services</a>
+      <a href="industries/index.html" class="hover:text-brand">Industries</a>
+      <a href="case-studies/index.html" class="hover:text-brand">Case Studies</a>
+      <a href="about.html" class="hover:text-brand">About</a>
+      <a href="contact.html" class="hover:text-brand">Contact</a>
+      <a href="contact.html#quote" class="bg-brand text-white px-4 py-2 rounded-xl shadow-soft hover:opacity-90">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="relative section">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(600px 300px at 20% 20%, #ff7a1a15%, transparent 60%);"></div>
+    <div class="container grid md:grid-cols-2 gap-10 items-center">
+      <div class="space-y-6">
+        <span class="inline-block bg-mist px-3 py-1 rounded-full text-sm">±2 mm accuracy • Since 2012</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">High‑Accuracy 3D Laser Scanning<br><span class="text-brand">for Mission‑Critical Facilities</span></h1>
+        <p class="text-lg muted">Reduce field time and shutdowns, de‑risk construction with clash checks, and build with confidence from exact As‑Built data.</p>
+        <div class="flex gap-3">
+          <a href="contact.html#quote" class="bg-brand text-white px-6 py-3 rounded-xl shadow-soft">Request a Quote</a>
+          <a href="case-studies/index.html" class="px-6 py-3 rounded-xl border border-slate-300 hover:bg-mist">View Case Studies</a>
+        </div>
+        <div class="grid grid-cols-3 gap-6 pt-6">
+          <div><div class="text-3xl font-bold">±2&nbsp;mm</div><div class="text-xs muted">Accuracy</div></div>
+          <div><div class="text-3xl font-bold">2012</div><div class="text-xs muted">Established</div></div>
+          <div><div class="text-3xl font-bold">As‑Built</div><div class="text-xs muted">Specialists</div></div>
+        </div>
+      </div>
+      
+<div class="hero-video card p-0 shadow-soft">
+  <img class="poster" src="assets/hero-poster.jpg" alt="3D scan poster">
+  <div class="video-frame" style="display:none;">
+    <iframe title="3DLSS hero video"
+            data-src="https://player.vimeo.com/video/1101728497?autoplay=1&muted=1&loop=1&background=1&controls=0&autopause=0&dnt=1"
+            src="about:blank"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen></iframe>
+  </div>
+  <div class="hero-overlay"></div>
+</div><!-- end hero --><div class="hero-overlay"></div>
+</div>
+
+    </div>
+  
+      
+
+  </section>
+
+  <section class="section bg-mist">
+    <div class="container">
+      <div class="grid md:grid-cols-5 items-center gap-6">
+        <img class="rounded-xl w-full md:col-span-2" src="assets/images/logowall-1.jpg" alt="Client logos placeholder">
+        <div class="md:col-span-3">
+          <h2 class="text-2xl font-bold mb-2">Trusted by engineering teams</h2>
+          <p class="muted">Oil & gas, utilities, manufacturing, and institutional facilities rely on our fast, reliable capture and deliverables.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="section">
+    <div class="container">
+      <div class="flex flex-wrap gap-3">
+        <a href="services/index.html" class="px-4 py-2 rounded-full border border-slate-300 hover:bg-mist text-sm">All Services</a>
+        <a href="industries/index.html" class="px-4 py-2 rounded-full border border-slate-300 hover:bg-mist text-sm">Industries</a>
+        <a href="case-studies/index.html" class="px-4 py-2 rounded-full border border-slate-300 hover:bg-mist text-sm">Case Studies</a>
+        <a href="contact.html#quote" class="px-4 py-2 rounded-full bg-brand text-white text-sm">Request a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 bg-mist">
+    <div class="container">
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="card p-6">
+          <div class="text-sm uppercase text-slate-500">01</div>
+          <div class="font-semibold">Scan</div>
+          <p class="muted text-sm">High‑resolution capture onsite with minimal disruption.</p>
+        </div>
+        <div class="card p-6">
+          <div class="text-sm uppercase text-slate-500">02</div>
+          <div class="font-semibold">Register</div>
+          <p class="muted text-sm">Point clouds unified to your survey control.</p>
+        </div>
+        <div class="card p-6">
+          <div class="text-sm uppercase text-slate-500">03</div>
+          <div class="font-semibold">Model</div>
+          <p class="muted text-sm">As‑Built 3D and drawing extractions (GA/ISO/structural).</p>
+        </div>
+        <div class="card p-6">
+          <div class="text-sm uppercase text-slate-500">04</div>
+          <div class="font-semibold">Deliver</div>
+          <p class="muted text-sm">Approval sets, reports, and packages ready for fabrication.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6">Industries we support</h2>
+      <div class="grid md:grid-cols-4 gap-6">
+        <a href="industries/index.html" class="card p-6 hover:shadow-soft"><div class="font-semibold mb-1">Oil & Gas</div><p class="muted text-sm">Tie‑ins, valve sites, compressor stations.</p></a>
+        <a href="industries/index.html" class="card p-6 hover:shadow-soft"><div class="font-semibold mb-1">Utilities</div><p class="muted text-sm">Water treatment, pumping, energy.</p></a>
+        <a href="industries/index.html" class="card p-6 hover:shadow-soft"><div class="font-semibold mb-1">Manufacturing</div><p class="muted text-sm">Equipment swaps, safety upgrades.</p></a>
+        <a href="industries/index.html" class="card p-6 hover:shadow-soft"><div class="font-semibold mb-1">Institutional</div><p class="muted text-sm">Campus utilities, renovations.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 bg-mist">
+    <div class="container grid md:grid-cols-3 gap-6">
+      <div class="card p-6">
+        <div class="font-semibold mb-1">Accuracy</div>
+        <p class="muted text-sm">±2 mm under typical conditions.</p>
+      </div>
+      <div class="card p-6">
+        <div class="font-semibold mb-1">Formats</div>
+        <p class="muted text-sm">E57, RCP/RCS, LAS/LAZ, glTF/GLB, DWG/DXF, RVT; PDF/CSV reports.</p>
+      </div>
+      <div class="card p-6">
+        <div class="font-semibold mb-1">Safety & Planning</div>
+        <p class="muted text-sm">De‑risk shutdowns with virtual site visits and clash checks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container max-w-3xl">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">Quick questions</h2>
+      <button data-accordion class="w-full text-left py-3 border-b">How fast can we start?</button>
+      <div class="hidden muted pb-4">Share scope and drawings today; scanning can be scheduled quickly depending on access and safety requirements.</div>
+      <button data-accordion class="w-full text-left py-3 border-b">What do you need from us?</button>
+      <div class="hidden muted pb-4">Project scope, any existing control/survey, and preferred deliverables/formats. We’ll provide a checklist.</div>
+      <button data-accordion class="w-full text-left py-3 border-b">Can you use our drafting standards?</button>
+      <div class="hidden muted pb-4">Yes—provide standards/templates at kick‑off and we’ll align outputs.</div>
+    </div>
+  </section>
+
+  <section class="section bg-mist">
+    <div class="container">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">Equipment Rentals</h2>
+      <p class="muted mb-6 max-w-2xl">Need top‑tier scanning without the capital expense? Our rental program is launching soon—reserve daily, weekly, or monthly and get the same precision gear we use in the field.</p>
+      <div class="grid md:grid-cols-5 gap-4">
+        <div class="card p-4 text-center"><img src="assets/images/rtc360.jpg" alt="Leica RTC 360" class="mb-2"><div class="font-semibold">Leica RTC 360</div></div>
+        <div class="card p-4 text-center"><img src="assets/images/p20.jpg" alt="Leica P20" class="mb-2"><div class="font-semibold">Leica P20</div></div>
+        <div class="card p-4 text-center"><img src="assets/images/ray1.jpg" alt="Artec Ray 1" class="mb-2"><div class="font-semibold">Artec Ray 1</div></div>
+        <div class="card p-4 text-center"><img src="assets/images/leo.jpg" alt="Artec Leo" class="mb-2"><div class="font-semibold">Artec Leo</div></div>
+        <div class="card p-4 text-center"><img src="assets/images/handyscan700.jpg" alt="Creaform HandyScan 700" class="mb-2"><div class="font-semibold">HandyScan 700</div></div>
+      </div>
+      <div class="mt-6"><a href="rentals.html" class="btn btn-primary">View Rentals</a></div>
+    </div>
+  </section>
+
+  <section class="section bg-ink text-white">
+    <div class="container flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <h2 class="text-2xl font-bold">Ready to discuss your facility?</h2>
+        <p class="text-white/70">Send drawings or scope and we’ll estimate turnarounds and budget.</p>
+      </div>
+      <a href="contact.html#quote" class="bg-brand text-white px-6 py-3 rounded-xl">Request a Quote</a>
+    </div>
+  </section>
+</main>
+
+<footer class="mt-20 border-t border-slate-200">
+  <div class="container py-10 grid md:grid-cols-4 gap-8">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <img src="assets/logo.png" class="h-10 w-auto" alt="3DLSS — 3D Laser Scanning Solutions"><span class="font-semibold">3DLSS</span>
+      </div>
+      <p class="muted text-sm">Revitalizing the As‑Built industry since 2012. Calgary, Alberta.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold mb-2">Company</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a class="hover:text-brand" href="about.html">About</a></li>
+        <li><a class="hover:text-brand" href="case-studies/index.html">Case Studies</a></li>
+        <li><a class="hover:text-brand" href="services/index.html">Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold mb-2">Legal</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a class="hover:text-brand" href="privacy.html">Privacy</a></li>
+        <li><a class="hover:text-brand" href="terms.html">Terms</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold mb-2">Contact</h3>
+      <p class="text-sm">info@3dlss.com</p>
+    </div>
+  </div>
+  <div class="text-center text-xs muted pb-10">© 2025 3D Laser Scanning Solutions Ltd.</div>
+</footer>
+<script>
+(function(){
+  try {
+    var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hero = document.querySelector('.hero-video');
+    if (!hero) return;
+    var frameWrap = hero.querySelector('.video-frame');
+    var posterImg = hero.querySelector('.poster');
+    function loadIframe(){
+      if (!frameWrap) return;
+      var iframe = frameWrap.querySelector('iframe');
+      if (iframe && (iframe.src === '' || iframe.src === 'about:blank')) {
+        iframe.src = iframe.getAttribute('data-src');
+        frameWrap.style.display = 'block';
+        if (posterImg) posterImg.style.display = 'none';
+      }
+    }
+    if (!prefersReduce && 'IntersectionObserver' in window && hero) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) { loadIframe(); io.disconnect(); } });
+      }, { rootMargin: '0px 0px -10% 0px' });
+      io.observe(hero);
+    } else if (!prefersReduce) {
+      // Fallback: load after DOM ready
+      if (document.readyState === 'complete' || document.readyState === 'interactive') loadIframe();
+      else document.addEventListener('DOMContentLoaded', loadIframe);
+    }
+  } catch(e) { /* swallow to avoid blocking */ }
+})();
+</script>
+<script>
+(function(){
+  try {
+    var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hero = document.querySelector('.hero-video');
+    if (!hero) return;
+    var frameWrap = hero.querySelector('.video-frame');
+    var posterImg = hero.querySelector('.poster');
+    function loadIframe(){
+      if (!frameWrap) return;
+      var iframe = frameWrap.querySelector('iframe');
+      if (iframe && (iframe.src === '' || iframe.src === 'about:blank')) {
+        iframe.src = iframe.getAttribute('data-src');
+        frameWrap.style.display = 'block';
+        if (posterImg) posterImg.style.display = 'none';
+      }
+    }
+    if (!prefersReduce && 'IntersectionObserver' in window && hero) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) { loadIframe(); io.disconnect(); } });
+      }, { rootMargin: '0px 0px -10% 0px' });
+      io.observe(hero);
+    } else if (!prefersReduce) {
+      if (document.readyState === 'complete' || document.readyState === 'interactive') loadIframe();
+      else document.addEventListener('DOMContentLoaded', loadIframe);
+    }
+  } catch(e) {}
+})();
+</script>
+</body></html>

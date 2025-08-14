@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Service — 3DLSS</title>
+<meta name="description" content="Terms placeholder.">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="canonical" href="https://www.3dlss.com/">
+<meta property="og:title" content="Terms of Service — 3DLSS"><meta property="og:description" content="Terms placeholder.">
+<meta property="og:image" content="assets/og.jpg"><meta property="og:type" content="website">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {"DEFAULT":"#ff7a1a","muted":"#ffb36e"},
+        ink: "#0b1220",
+        mist: "#f6f7f9"
+      },
+      borderRadius: {"xl":"1rem","2xl":"1.25rem"},
+      boxShadow: {
+        soft: "0 8px 30px rgba(11,18,32,0.06)"
+      },
+      fontFamily: {
+        sans: ["Inter","ui-sans-serif","system-ui"]
+      }
+    }
+  }
+};
+</script>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style>
+  .card { background: white; border: 1px solid #e5e7eb; border-radius: 1rem; }
+  .muted { color: #64748b; }
+  .section { padding: 4rem 0; }
+  .container { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+
+  .logo-wrap { position: relative; display: inline-flex; align-items: center; gap: .75rem; }
+  .logo-wrap img { transform-origin: left center; animation: logo-reveal .9s ease both; }
+  .logo-underline::after { content:""; position:absolute; left:0; bottom:-4px; height:3px; width:0; background:linear-gradient(90deg,#ff7a1a,#ffb36e); border-radius:9999px; animation: underline-grow 1.2s .5s ease forwards; }
+  @keyframes underline-grow { from { width:0; } to { width:72px; } }
+  @keyframes logo-reveal { from { opacity:0; transform: translateY(6px) scale(.98);} to { opacity:1; transform: translateY(0) scale(1);} }
+  .logo-wrap:hover img { transform: scale(1.03); transition: transform .2s ease; }
+</style>
+<script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if(window.lucide) window.lucide.createIcons();
+  document.querySelectorAll('[data-accordion]').forEach(acc => {
+    acc.addEventListener('click', () => {
+      const c = acc.nextElementSibling;
+      c.classList.toggle('hidden');
+    });
+  });
+});
+</script>
+</head>
+
+<body class="bg-white text-ink">
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+  <div class="container py-3 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3"><img src="assets/logo.png" class="h-10 w-auto" alt="3DLSS — 3D Laser Scanning Solutions"><span class="font-semibold">3DLSS</span></a>
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="services/index.html" class="hover:text-brand">Services</a>
+      <a href="industries/index.html" class="hover:text-brand">Industries</a>
+      <a href="case-studies/index.html" class="hover:text-brand">Case Studies</a>
+      <a href="about.html" class="hover:text-brand">About</a>
+      <a href="contact.html" class="hover:text-brand">Contact</a>
+      <a href="contact.html#quote" class="bg-brand text-white px-4 py-2 rounded-xl shadow-soft hover:opacity-90">Request a Quote</a>
+    <a href="rentals.html" class="hover:underline">Rentals</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container section max-w-3xl">
+  <h1 class="text-3xl md:text-4xl font-bold mb-4">Terms of Service</h1>
+  <p class="muted">These are placeholder terms. Replace with your approved legal terms.</p>
+</main>
+
+<footer class="mt-20 border-t border-slate-200">
+  <div class="container py-10 grid md:grid-cols-4 gap-8">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <img src="assets/logo.png" class="h-10 w-auto" alt="3DLSS — 3D Laser Scanning Solutions"><span class="font-semibold">3DLSS</span>
+      </div>
+      <p class="muted text-sm">Revitalizing the As‑Built industry since 2012. Calgary, Alberta.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold mb-2">Company</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a class="hover:text-brand" href="about.html">About</a></li>
+        <li><a class="hover:text-brand" href="case-studies/index.html">Case Studies</a></li>
+        <li><a class="hover:text-brand" href="services/index.html">Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold mb-2">Legal</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a class="hover:text-brand" href="privacy.html">Privacy</a></li>
+        <li><a class="hover:text-brand" href="terms.html">Terms</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold mb-2">Contact</h3>
+      <p class="text-sm">info@3dlss.com</p>
+    </div>
+  </div>
+  <div class="text-center text-xs muted pb-10">© 2025 3D Laser Scanning Solutions Ltd.</div>
+</footer>
+</body></html>
